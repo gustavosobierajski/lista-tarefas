@@ -30,7 +30,7 @@ public class TarefaController {
 	@Autowired
     private TarefaRepository _tarefaRepository;
 
-	@ApiOperation(value = "Get Tarefa" )
+	@ApiOperation(value = "Listar Tarefa" )
     @RequestMapping(value = "/tarefa", method = RequestMethod.GET, 
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Tarefa> Get() {
@@ -40,7 +40,7 @@ public class TarefaController {
 		
     }
 	
-	@ApiOperation(value = "Post Tarefa" )
+	@ApiOperation(value = "Adicionar Tarefa" )
     @RequestMapping(value = "/tarefa", method =  RequestMethod.POST,
     	    //Mapeia as requisições POST 
             consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -54,7 +54,7 @@ public class TarefaController {
 		
     }
 
-	@ApiOperation(value = "Put" )
+	@ApiOperation(value = "Concluir Tarefa" )
     @RequestMapping(value = "/tarefa/{id}", method =  RequestMethod.PUT,
     consumes = MediaType.APPLICATION_JSON_VALUE,
             // Consome JSON enviado no corpo da requisição
@@ -75,7 +75,7 @@ public class TarefaController {
 		
     }
 
-	@ApiOperation(value = "Delete Tarefa" )
+	@ApiOperation(value = "Deletar Tarefa" )
     @RequestMapping(value = "/tarefa/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Tarefa> Delete(@PathVariable(value = "id") long id) 
