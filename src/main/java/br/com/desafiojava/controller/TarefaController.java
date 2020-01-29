@@ -33,11 +33,9 @@ public class TarefaController {
 	@ApiOperation(value = "Listar Tarefa" )
     @RequestMapping(value = "/tarefa", method = RequestMethod.GET, 
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Tarefa> Get() {
+    public List<Tarefa> Get() {	
 		
-			return _tarefaRepository.findAll();
-			
-		
+		return _tarefaRepository.findAll();	
     }
 	
 	@ApiOperation(value = "Adicionar Tarefa" )
@@ -46,12 +44,9 @@ public class TarefaController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
             // Consome JSON enviado no corpo da requisição
 	@ResponseStatus(HttpStatus.OK)
-    public Tarefa Post(@Valid @RequestBody Tarefa tarefa) 
-    {
+    public Tarefa Post(@Valid @RequestBody Tarefa tarefa){
 		
-			return _tarefaRepository.save(tarefa);
-			
-		
+		return _tarefaRepository.save(tarefa);	
     }
 
 	@ApiOperation(value = "Concluir Tarefa" )
@@ -60,34 +55,32 @@ public class TarefaController {
             // Consome JSON enviado no corpo da requisição
             produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Tarefa> ConcluirTarefa(@PathVariable(value = "id") long id, @Valid @RequestBody Tarefa newTarefa) 
-    {
+    public ResponseEntity<Tarefa> ConcluirTarefa(@PathVariable(value = "id") long id,
+    		@Valid @RequestBody Tarefa newTarefa) {
 		
-			Tarefa tarefa = _tarefaRepository.findOne(id);
-			if(tarefa != null){                  
-				tarefa.setFl_status(1);
-				_tarefaRepository.save(tarefa);
-				return new ResponseEntity<Tarefa>(tarefa, HttpStatus.OK);
-			}
-			else
-				return new ResponseEntity<Tarefa>(HttpStatus.NOT_FOUND);
-			
-		
+		Tarefa tarefa = _tarefaRepository.findOne(id);
+		if(tarefa != null){                  
+			tarefa.setFl_status(1);
+			_tarefaRepository.save(tarefa);
+			return new ResponseEntity<Tarefa>(tarefa, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Tarefa>(HttpStatus.NOT_FOUND);					
+		}
     }
 
 	@ApiOperation(value = "Deletar Tarefa" )
     @RequestMapping(value = "/tarefa/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Tarefa> Delete(@PathVariable(value = "id") long id) 
-    {
+    public ResponseEntity<Tarefa> Delete(@PathVariable(value = "id") long id){
 		
-			Tarefa tarefa = _tarefaRepository.findOne(id);
-			if(tarefa != null){
-				_tarefaRepository.delete(tarefa);
-				return new ResponseEntity<Tarefa>(HttpStatus.OK);
-			}
-			else
-				return new ResponseEntity<Tarefa>(HttpStatus.NOT_FOUND);
-			
+		Tarefa tarefa = _tarefaRepository.findOne(id);
+		if(tarefa != null){
+			_tarefaRepository.delete(tarefa);
+			return new ResponseEntity<Tarefa>(HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Tarefa>(HttpStatus.NOT_FOUND);			
+		}		
     }
 }
