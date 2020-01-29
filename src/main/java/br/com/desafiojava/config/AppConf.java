@@ -26,7 +26,7 @@ public class AppConf implements WebMvcConfigurer {
 
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://gustavosobierajski.github.io/angular/")
+                .allowedOrigins("https://gustavosobierajski.github.io")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 
