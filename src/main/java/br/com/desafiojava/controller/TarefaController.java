@@ -33,13 +33,11 @@ public class TarefaController {
 	@ApiOperation(value = "Get Tarefa" )
     @RequestMapping(value = "/tarefa", method = RequestMethod.GET, 
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Tarefa> Get() throws Exception {
-		try {
+    public List<Tarefa> Get() {
+		
 			return _tarefaRepository.findAll();
 			
-		}catch (Exception e) {
-			throw e;
-		}
+		
     }
 	
 	@ApiOperation(value = "Post Tarefa" )
@@ -48,14 +46,12 @@ public class TarefaController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
             // Consome JSON enviado no corpo da requisição
 	@ResponseStatus(HttpStatus.OK)
-    public Tarefa Post(@Valid @RequestBody Tarefa tarefa) throws Exception
+    public Tarefa Post(@Valid @RequestBody Tarefa tarefa) 
     {
-		try {
+		
 			return _tarefaRepository.save(tarefa);
 			
-		}catch (Exception e) {
-			throw e;
-		}
+		
     }
 
 	@ApiOperation(value = "Put" )
@@ -64,9 +60,9 @@ public class TarefaController {
             // Consome JSON enviado no corpo da requisição
             produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Tarefa> ConcluirTarefa(@PathVariable(value = "id") long id, @Valid @RequestBody Tarefa newTarefa) throws Exception
+    public ResponseEntity<Tarefa> ConcluirTarefa(@PathVariable(value = "id") long id, @Valid @RequestBody Tarefa newTarefa) 
     {
-		try {
+		
 			Tarefa tarefa = _tarefaRepository.findOne(id);
 			if(tarefa != null){                  
 				tarefa.setFl_status(1);
@@ -76,17 +72,15 @@ public class TarefaController {
 			else
 				return new ResponseEntity<Tarefa>(HttpStatus.NOT_FOUND);
 			
-		}catch (Exception e) {
-			throw e;
-		}
+		
     }
 
 	@ApiOperation(value = "Delete Tarefa" )
     @RequestMapping(value = "/tarefa/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Tarefa> Delete(@PathVariable(value = "id") long id) throws Exception
+    public ResponseEntity<Tarefa> Delete(@PathVariable(value = "id") long id) 
     {
-		try {
+		
 			Tarefa tarefa = _tarefaRepository.findOne(id);
 			if(tarefa != null){
 				_tarefaRepository.delete(tarefa);
@@ -95,8 +89,5 @@ public class TarefaController {
 			else
 				return new ResponseEntity<Tarefa>(HttpStatus.NOT_FOUND);
 			
-		}catch (Exception e) {
-			throw e;
-		}
     }
 }
