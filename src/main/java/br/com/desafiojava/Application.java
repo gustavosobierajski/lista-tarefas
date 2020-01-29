@@ -24,7 +24,7 @@ public class Application {
     private SpringSwaggerConfig swaggerConfig;
      
     public static void main(String[] args) {
-           //Troque esta linha SpringApplication.run(Application.class, args); pela linha abaixo
+           
            new SpringApplicationBuilder(Application.class).web(true).run(args);
     }
      
